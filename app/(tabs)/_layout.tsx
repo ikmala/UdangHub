@@ -1,34 +1,60 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import React from "react";
+import { Tabs } from "expo-router";
+import TabBar from "@/hooks/TabBar";
+import Entypo from "@expo/vector-icons/Entypo";
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function TabsLayout() {
   return (
     <Tabs
+      tabBar={(props) => <TabBar {...props} />}
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-      }}>
+        tabBarActiveTintColor: "light",
+        tabBarInactiveTintColor: "gray",
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="Beranda"
         options={{
-          title: 'Home',
+          title: "Beranda",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <Entypo name="home" size={focused ? 28 : 24} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="Monitor"
         options={{
-          title: 'Explore',
+          title: "Monitoring",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <FontAwesome5
+              name="chart-area"
+              size={focused ? 28 : 24}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Diskusi"
+        options={{
+          title: "Diskusi",
+          tabBarIcon: ({ color, focused }) => (
+            <Entypo name="chat" size={focused ? 28 : 24} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Akun"
+        options={{
+          title: "Akun",
+          tabBarIcon: ({ color, focused }) => (
+            <FontAwesome5
+              name="user-alt"
+              size={focused ? 28 : 24}
+              color={color}
+            />
           ),
         }}
       />

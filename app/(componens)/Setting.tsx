@@ -19,14 +19,14 @@ const Setting = () => {
       </View>
       <View className="p-5">
         <View className="flex-row justify-between items-center rounded-xl border-black border-2 p-5 mb-2">
-          <Text className="text-primary text-2xl font-poppinsBold">LogOut</Text>
+          <Text className="text-primary text-xl font-poppinsBold">LogOut</Text>
           <View className="flex-row items-center space-x-2">
             <TouchableOpacity
               className="items-center bg-primary py-2 px-6 rounded-full"
               onPress={() => router.replace("/")}
             >
               <Text className="text-white">
-                <Entypo name="login" size={24} />
+                <Entypo name="login" size={15} />
               </Text>
             </TouchableOpacity>
           </View>

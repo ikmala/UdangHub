@@ -118,7 +118,7 @@ const Beranda = () => {
           }}
         >
           <TouchableOpacity>
-            <Image source={link} className="w-52 h-52 mt-2" />
+            <Image source={link} className="w-40 h-52 mt-2" />
           </TouchableOpacity>
           <Text className="text-black font-poppinsBold text-center mt-1">
             {name}
@@ -322,16 +322,16 @@ const Beranda = () => {
         <ScrollView horizontal={true}>
           <View className="flex-row space-x-2 ">
             {card3(
-              "Segera Hadir",
-              "Rp ?",
-              "",
-              require("@/assets/images/image.png")
+              "Sensor TDS",
+              "Rp 200.000",
+              "Gravity: Analog TDS Sensor",
+              require("@/assets/images/sensorTDS.jpg")
             )}
             {card3(
-              "Segera Hadir",
-              "Rp ?",
-              "",
-              require("@/assets/images/image.png")
+              "Sensor PH",
+              "Rp 500.000",
+              "Gravity: Analog pH Sensor",
+              require("@/assets/images/sensorPH.jpg")
             )}
             {/* {card3(
               "Detektor DO",

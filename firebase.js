@@ -6,18 +6,20 @@ import {
   initializeAuth,
   getReactNativePersistence,
 } from "firebase/auth"; // Import Authentication dan persistence
-import { getFirestore } from "firebase/firestore"; // Import Firestore
+import { getFirestore, doc, getDoc } from "firebase/firestore"; // Import Firestore
 import AsyncStorage from "@react-native-async-storage/async-storage"; // Import AsyncStorage
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAy6TX8esSjQYWih7JsPUKjn38sSVPTnbM",
-  authDomain: "innovilage2024.firebaseapp.com",
-  projectId: "innovilage2024",
-  storageBucket: "innovilage2024.firebasestorage.app",
-  messagingSenderId: "601512383274",
-  appId: "1:601512383274:web:7fd1f18f2fb9dcd7654453",
-  measurementId: "G-V2TX1XSJ6L",
+  apiKey: "AIzaSyDuQjJWKG5I3_4AvU6oG2eVZZ654tb0fCU",
+  authDomain: "penelitianudang.firebaseapp.com",
+  databaseURL:
+    "https://penelitianudang-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "penelitianudang",
+  storageBucket: "penelitianudang.firebasestorage.app",
+  messagingSenderId: "430149120354",
+  appId: "1:430149120354:web:a94a7f9e8926fa60fafc3b",
+  measurementId: "G-CGN7LE5ZCT",
 };
 
 // Initialize Firebase

@@ -43,7 +43,7 @@ const Login = () => {
   };
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View className="flex-1 items-center">
+      <View className="flex-1 items-center bg-primary">
         <Image
           source={require("@/assets/images/vector-login.png")}
           className="w-full absolute top-28"
@@ -51,36 +51,36 @@ const Login = () => {
         />
         <View className="absolute top-20">
           <Image
-            source={require("@/assets/images/Logo-udangBlack.png")}
-            className="w-[70px] h-[70px]"
+            source={require("@/assets/images/Logo_modang2.png")}
+            // className="w-[70px] h-[70px]"
           />
         </View>
 
         <View className="absolute bottom-20 w-full px-6">
-          <Text className="font-poppinsBold mb-4 text-primary text-2xl">
+          <Text className="font-poppinsBold mb-4 text-white text-2xl">
             LOGIN
           </Text>
-          <Text className="text-primary font-poppinsMedium mb-6">
+          <Text className="text-white font-poppinsMedium mb-6">
             Login untuk masuk ke akunmu
           </Text>
 
           <View className="mb-4">
             <TextInput
               placeholder="Email"
-              className="w-full border bg-primary text-white border-x-primary p-4 rounded-full pl-6 font-interMedium"
-              placeholderTextColor="#ffffff"
+              className="w-full border bg-white text-primary border-x-black p-4 rounded-full pl-6 font-interMedium"
+              placeholderTextColor="#002A58"
               keyboardType="email-address"
               value={email}
               onChangeText={setEmail}
             />
           </View>
 
-          <View className="mb-6 flex-row items-center border bg-primary border-x-primary rounded-full">
+          <View className="mb-6 flex-row items-center border bg-white border-x-black rounded-full">
             <TextInput
               placeholder="Password"
               secureTextEntry={!showPassword}
-              className="flex-1 p-4 text-white pl-6 font-interMedium"
-              placeholderTextColor="#ffffff"
+              className="flex-1 p-4 text-primary pl-6 font-interMedium"
+              placeholderTextColor="#002A58"
               value={password}
               onChangeText={setPassword}
             />
@@ -88,7 +88,7 @@ const Login = () => {
               onPress={() => setShowPassword(!showPassword)}
               className="pr-4"
             >
-              <EyeIcon color="white" size={20} />
+              <EyeIcon color="black" size={20} />
             </TouchableOpacity>
           </View>
 
@@ -101,15 +101,15 @@ const Login = () => {
               Belum memiliki akun?{" "}
             </Text>
             <TouchableOpacity onPress={() => router.replace("/(auth)/Signup")}>
-              <Text className="text-primary font-interBold">Sign Up</Text>
+              <Text className="text-white font-interBold">Sign Up</Text>
             </TouchableOpacity>
           </View>
 
           <TouchableOpacity
             onPress={handleLogin}
-            className="bg-primary p-6 rounded-full"
+            className="bg-white p-6 rounded-full"
           >
-            <Text className="text-white text-center font-poppinsMedium">
+            <Text className="text-primary text-2xl text-center font-poppinsMedium">
               Masuk
             </Text>
           </TouchableOpacity>

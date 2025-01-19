@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "UdangHub",
-    "slug": "UdangHub",
+    "name": "modang",
+    "slug": "modang",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon-square.png",
+    "icon": "./assets/images/Logo_modang2.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/Logo_modang1.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#012957"
     },
     "ios": {
       "supportsTablet": true
@@ -18,15 +18,15 @@
     "android": {
       "newArchEnabled": true,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon-square.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/Logo_modang1.png",
+        "backgroundColor": "#012957"
       },
       "package": "com.ikmal05.UdangHub"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/Logo_modang1.png"
     },
     "plugins": ["expo-router", "expo-font"],
     "experiments": {

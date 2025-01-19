@@ -79,7 +79,7 @@ const Signup = () => {
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View className="flex-1 items-center">
+      <View className="flex-1 items-center bg-primary">
         <Modal visible={cameraVisible} animationType="slide">
           <QRCodeScanner
             onCodeScanned={handleBarCodeScanned}
@@ -93,25 +93,22 @@ const Signup = () => {
           style={{ top: 150 }}
         />
         <View className="absolute top-20">
-          <Image
-            source={require("@/assets/images/Logo-udangBlack.png")}
-            className="w-[70px] h-[70px]"
-          />
+          <Image source={require("@/assets/images/Logo_modang2.png")} />
         </View>
 
         <View className="absolute bottom-20 w-full px-6">
-          <Text className="font-poppinsBold mb-4 text-primary text-2xl">
+          <Text className="font-poppinsBold mb-4 text-white text-2xl">
             Sign Up
           </Text>
-          <Text className="text-primary font-poppinsMedium mb-6">
+          <Text className="text-white font-poppinsMedium mb-6">
             Buat Akun untuk memulai budidaya
           </Text>
 
           <View className="mb-4">
             <TextInput
               placeholder="Email"
-              className="w-full border bg-primary text-white border-x-primary p-4 rounded-full pl-6 font-interMedium"
-              placeholderTextColor="#ffffff"
+              className="w-full border bg-white text-primary border-x-black p-4 rounded-full pl-6 font-interMedium"
+              placeholderTextColor="#002A58"
               keyboardType="email-address"
               value={email}
               onChangeText={setEmail}
@@ -119,12 +116,12 @@ const Signup = () => {
           </View>
 
           <View className="mb-2">
-            <View className="flex-row items-center border bg-primary border-x-primary rounded-full">
+            <View className="flex-row items-center border bg-white border-x-black rounded-full">
               <TextInput
                 placeholder="Password"
                 secureTextEntry={!showPassword}
-                className="flex-1 p-4 text-white pl-6 font-interMedium"
-                placeholderTextColor="#ffffff"
+                className="flex-1 p-4 text-primary pl-6 font-interMedium"
+                placeholderTextColor="#002A58"
                 value={password}
                 onChangeText={setPassword}
               />
@@ -132,18 +129,18 @@ const Signup = () => {
                 onPress={() => setShowPassword(!showPassword)}
                 className="pr-4"
               >
-                <EyeIcon color="white" size={20} />
+                <EyeIcon color="black" size={20} />
               </TouchableOpacity>
             </View>
           </View>
 
           <View className="mb-6">
-            <View className="flex-row items-center border bg-primary border-x-primary rounded-full">
+            <View className="flex-row items-center border bg-white border-x-black rounded-full">
               <TextInput
                 placeholder="Confirm Password"
                 secureTextEntry={true}
-                className="flex-1 p-4 text-white pl-6 font-interMedium"
-                placeholderTextColor="#ffffff"
+                className="flex-1 p-4 text-primary pl-6 font-interMedium"
+                placeholderTextColor="#002A58"
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
               />
@@ -154,17 +151,17 @@ const Signup = () => {
           </View>
 
           <View className="mb-2">
-            <View className="flex-row items-center border bg-primary border-x-primary rounded-full">
+            <View className="flex-row items-center border bg-white border-x-black rounded-full">
               <TextInput
                 placeholder="Code QR"
-                className="flex-1 p-4 text-white pl-6 font-interMedium"
-                placeholderTextColor="#ffffff"
+                className="flex-1 p-4 text-primary pl-6 font-interMedium"
+                placeholderTextColor="#002A58"
                 value={qrCode}
                 onChangeText={setQRCode}
                 editable={false}
               />
               <TouchableOpacity onPress={handleScanQR} className="pr-4">
-                <CameraIcon color="white" size={20} />
+                <CameraIcon color="black" size={20} />
               </TouchableOpacity>
             </View>
           </View>
@@ -174,15 +171,15 @@ const Signup = () => {
               Sudah memiliki akun?{" "}
             </Text>
             <TouchableOpacity onPress={() => router.replace("/(auth)/Login")}>
-              <Text className="text-primary font-interBold">Login</Text>
+              <Text className="text-white font-interBold">Login</Text>
             </TouchableOpacity>
           </View>
 
           <TouchableOpacity
             onPress={handleSignup}
-            className="bg-primary p-6 rounded-full"
+            className="bg-white p-6 rounded-full"
           >
-            <Text className="text-white text-center font-poppinsMedium">
+            <Text className="text-primary text-2xl text-center font-poppinsMedium">
               Daftar
             </Text>
           </TouchableOpacity>

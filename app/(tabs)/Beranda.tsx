@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Image, ImageSourcePropType } from "react-native";
 import Header from "../(componens)/Header";
+import Svg, { Circle } from "react-native-svg";
 
 const Beranda = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("Kolam 1");
+  const [selectedOption, setSelectedOption] = useState(" ");
 
   const toggleDropdown = () => {
     setIsDropdownVisible(!isDropdownVisible);
@@ -15,346 +16,103 @@ const Beranda = () => {
     setSelectedOption(option);
     setIsDropdownVisible(false);
   };
-
-  const card = (name: string, value: string | number) => {
+  const dropdown = (numberkolam: any) => {
     return (
-      <View
-        className="bg-primary p-1 rounded-2xl mx-2 w-60 "
-        style={{
-          elevation: 8,
-          shadowRadius: 8,
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: -5 },
-          shadowOpacity: 0.2,
-        }}
-      >
-        <View
-          className="bg-white p-5 rounded-xl w-full items-center"
-          style={{
-            elevation: 8,
-            shadowRadius: 8,
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: -5 },
-            shadowOpacity: 0.2,
-          }}
+      <View className="relative">
+        <TouchableOpacity
+          className="flex-row items-center bg-white py-2 px-6 rounded-full shadow-lg shadow-black"
+          onPress={toggleDropdown}
         >
-          <Text className="text-xl font-poppinsBold text-primary">{name}</Text>
-          <Text className="text-4xl font-poppinsBold text-primary">
-            {value}
-          </Text>
-          <Text className="text-primary font-poppinsBold">Detektor Suhu</Text>
-        </View>
-        <Text className="text-white mt-2 font-poppinsMedium text-center">
-          Alat telah Terintegrasi
-        </Text>
+          <Text className="text-primary text-base">{numberkolam}</Text>
+          <Text className="text-primary text-sm ml-2">▼</Text>
+        </TouchableOpacity>
+        {/* Dropdown Options */}
+        {isDropdownVisible && (
+          <View className="absolute top-full mt-2 w-36 bg-white rounded-lg shadow-lg z-10">
+            <TouchableOpacity onPress={() => selectOption("Kolam 1")}>
+              <Text className="text-primary text-base py-2 px-4">
+                {numberkolam}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     );
   };
 
-  const card2 = (
-    name: string,
-    deskripsi: string,
-    link: ImageSourcePropType
-  ) => {
-    return (
-      <View
-        className="bg-primary p-1 rounded-2xl mx-2 w-50"
-        style={{
-          elevation: 8,
-          shadowRadius: 8,
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: -5 },
-          shadowOpacity: 0.2,
-        }}
-      >
-        <View
-          className="bg-white p-5 rounded-full w-full items-center"
-          style={{
-            elevation: 8,
-            shadowRadius: 8,
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: -5 },
-            shadowOpacity: 0.2,
-          }}
-        >
-          <Image source={link} className="w-24 h-24" />
-        </View>
-        <Text className="text-white font-poppinsBold text-center mt-3">
-          {name}
-        </Text>
-        <Text className="text-white  font-poppinsMedium text-center mt-3 w-40">
-          {deskripsi}
-        </Text>
-      </View>
-    );
-  };
+  const pieCard = ({ name, value }: { name: string; value: number }) => {
+    const strokeWidth = 10;
+    const radius = 50;
+    const circumference = 2 * Math.PI * radius;
+    const progress = (value / 200) * circumference;
 
-  const card3 = (
-    name: string,
-    harga: string,
-    deskripsi: string,
-    link: ImageSourcePropType
-  ) => {
     return (
-      <View
-        className="bg-primary p-1 rounded-2xl mx-2 w-48 mb-5 items-stretch"
-        style={{
-          elevation: 8,
-          shadowRadius: 8,
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: -5 },
-          shadowOpacity: 0.2,
-          height: 300,
-        }}
-      >
-        <View
-          className="bg-white items-center justify-center rounded-xl flex-1"
-          style={{
-            elevation: 8,
-            shadowRadius: 8,
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: -5 },
-            shadowOpacity: 0.2,
-          }}
-        >
-          <TouchableOpacity>
-            <Image source={link} className="w-40 h-52 mt-2" />
-          </TouchableOpacity>
-          <Text className="text-black font-poppinsBold text-center mt-1">
-            {name}
-          </Text>
-          <Text className="text-black font-poppinsBold text-center mt-1">
-            {harga}
-          </Text>
-          <Text className="text-primary font-poppinsMedium text-center mt-1 w-40 mb-2">
-            {deskripsi}
-          </Text>
+      <View className="flex items-center justify-center p-2 relative">
+        <Svg width={120} height={120}>
+          {/* Lingkaran background */}
+          <Circle
+            cx="60"
+            cy="60"
+            r={radius}
+            strokeWidth={strokeWidth}
+            fill="none"
+            strokeDasharray={circumference}
+            strokeDashoffset={0}
+            transform="rotate(90 60 60)"
+          />
+          {/* Lingkaran progres */}
+          <Circle
+            cx="60"
+            cy="60"
+            r={radius}
+            stroke="white"
+            strokeWidth={strokeWidth}
+            fill="none"
+            strokeDasharray={circumference}
+            strokeDashoffset={circumference - progress}
+            transform="rotate(90 60 60)"
+          />
+        </Svg>
+        {/* Teks Nilai */}
+        <View className="absolute inset-0 flex items-center justify-center">
+          <Text className="text-xl font-poppinsMedium text-white">{name}</Text>
+          <Text className="text-4xl font-poppinsBold text-white">{value}°</Text>
         </View>
       </View>
     );
   };
 
   return (
-    <ScrollView>
+    <ScrollView className="bg-primary">
       {/* Header */}
       {Header()}
 
       {/* Monitoring Section */}
-      <View className="flex-row justify-between items-center  p-5">
-        {/* Sebelah kiri */}
-        <View>
-          <Text className="text-lg font-poppinsBold text-primary">
-            Monitoring
-          </Text>
-          <Text className="text-primary font-poppinsMedium">
-            Data selalu diperbarui
-          </Text>
-        </View>
-        {/* Dropdown Button */}
-        <View className="relative">
-          <TouchableOpacity
-            className="flex-row items-center bg-primary py-2 px-6 rounded-full shadow-lg shadow-black"
-            onPress={toggleDropdown}
-          >
-            <Text className="text-white text-base">{selectedOption}</Text>
-            <Text className="text-white text-sm ml-2">▼</Text>
-          </TouchableOpacity>
-          {/* Dropdown Options */}
-          {isDropdownVisible && (
-            <View className="absolute top-full mt-2 w-36 bg-white rounded-lg shadow-lg z-10">
-              <TouchableOpacity onPress={() => selectOption("Kolam 1")}>
-                <Text className="text-primary text-base py-2 px-4">
-                  Kolam 1
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => selectOption("Kolam 2")}>
-                <Text className="text-primary text-base py-2 px-4">
-                  Kolam 2
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => selectOption("Kolam 3")}>
-                <Text className="text-primary text-base py-2 px-4">
-                  Kolam 3
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        </View>
-      </View>
-
-      {/* Mnotoring Realtime */}
-      <ScrollView horizontal={true}>
-        <View className="flex-row space-x-2 mb-4">
-          {card("Suhu", "24°")}
-          {card("pH", 7)}
-          {card("Salinitas", "30 ppm")}
-          {card("DO", "5 mg/L")}
-        </View>
-      </ScrollView>
-
-      {/* Menu */}
-      <View className="flex-row justify-around items-center mt-10">
-        <View className="items-center">
-          <TouchableOpacity
-            className="items-center bg-white p-1 rounded-xl h-28 w-28 "
-            style={{
-              elevation: 8,
-              shadowRadius: 8,
-              shadowColor: "#000",
-              shadowOffset: { width: 0, height: -5 },
-              shadowOpacity: 0.2,
-            }}
-          >
-            <View className="bg-[#D1DDEB] p-1 rounded-xl items-center justify-center">
-              <Image
-                source={require("@/assets/images/vektorAlat.png")}
-                className="w-24 h-24 mb-0"
-              />
-            </View>
-          </TouchableOpacity>
-          <Text className=" font-poppinsBold text-primary text-center mt-2 w-28">
-            Pembelian Alat Budidaya
-          </Text>
-        </View>
-        <View className="items-center">
-          <TouchableOpacity
-            className="items-center bg-white p-1 rounded-xl h-28 w-28 "
-            style={{
-              elevation: 8,
-              shadowRadius: 8,
-              shadowColor: "#000",
-              shadowOffset: { width: 0, height: -5 },
-              shadowOpacity: 0.2,
-            }}
-          >
-            <View className="bg-[#D1DDEB] p-1 rounded-xl items-center justify-center">
-              <Image
-                source={require("@/assets/images/vektorKolam.png")}
-                className="w-24 h-24 mb-0"
-              />
-            </View>
-          </TouchableOpacity>
-          <Text className=" font-poppinsBold text-primary text-center  mt-2 w-28">
-            Monitoring Budidaya
-          </Text>
-        </View>
-        <View className="items-center">
-          <TouchableOpacity
-            className="items-center bg-white p-1 rounded-xl h-28 w-28 "
-            style={{
-              elevation: 8,
-              shadowRadius: 8,
-              shadowColor: "#000",
-              shadowOffset: { width: 0, height: -5 },
-              shadowOpacity: 0.2,
-            }}
-          >
-            <View className="bg-[#D1DDEB] p-1 rounded-xl items-center justify-center">
-              <Image
-                source={require("@/assets/images/vektorTruk.png")}
-                className="w-24 h-24 mb-0"
-              />
-            </View>
-          </TouchableOpacity>
-          <Text className=" font-poppinsBold text-primary text-center  mt-2 w-28">
-            Pembelian Hasil Budidaya
-          </Text>
-        </View>
-      </View>
-
-      {/* Menu 2 */}
-      <View className="mt-5">
-        <View className="p-5">
-          <Text className="text-lg font-poppinsBold text-primary">
-            Alat Terintegrasi
-          </Text>
-          <Text className="text-primary font-poppinsMedium">
-            Aplikasi telah terhubung dengan alat
-          </Text>
-        </View>
-
-        <ScrollView horizontal={true}>
-          <View className="flex-row space-x-2">
-            {card2(
-              "Detektor Suhu",
-              "digunakan untuk mengukur suhu pada kolam",
-              require("@/assets/images/sensorSuhu.png")
-            )}
-            {card2(
-              "Detektor DO",
-              "digunakan untuk mengukur oksigen pada kolam",
-              require("@/assets/images/sensorDO.jpg")
-            )}
-            {card2(
-              "Detektor PH",
-              "digunakan untuk mengukur asam dan basa pada kolam",
-              require("@/assets/images/sensorPH.jpg")
-            )}
-            {card2(
-              "Detektor TDS",
-              " digunakan untuk mengukur jumlah padatan atau partikel terlarut didalam kolam",
-              require("@/assets/images/sensorTDS.jpg")
-            )}
-          </View>
-        </ScrollView>
-      </View>
-
-      {/* Menu 3*/}
-      <View className="mt-5">
-        <View className="flex-row justify-between items-center p-5">
+      <View className=" bg-hore rounded-3xl mx-3 p-5 border-white border">
+        <View className="flex-row justify-between items-center ">
+          {/* Sebelah kiri */}
           <View>
-            <Text className="text-lg font-poppinsBold text-primary">
-              Pembelian Alat Budidaya{" "}
+            <Text className="text-lg font-poppinsBold text-white">
+              Monitoring
             </Text>
-            <Text className="text-primary font-poppinsMedium">
-              Membeli alat budidaya{" "}
+            <Text className="text-white font-poppinsMedium">
+              Data selalu diperbarui
             </Text>
           </View>
-          <View className="flex-row space-x-2">
-            <TouchableOpacity>
-              <Text className="text-[#6EB4FF] font-poppinsBold">
-                Lihat Semua{" >>"}
-              </Text>
-            </TouchableOpacity>
-          </View>
+          {/* Dropdown Button */}
+          <View>{dropdown("kolam1")}</View>
         </View>
 
+        {/* Mnotoring Realtime */}
         <ScrollView horizontal={true}>
-          <View className="flex-row space-x-2 ">
-            {card3(
-              "Sensor TDS",
-              "Rp 200.000",
-              "Gravity: Analog TDS Sensor",
-              require("@/assets/images/sensorTDS.jpg")
-            )}
-            {card3(
-              "Sensor PH",
-              "Rp 500.000",
-              "Gravity: Analog pH Sensor",
-              require("@/assets/images/sensorPH.jpg")
-            )}
-            {/* {card3(
-              "Detektor DO",
-              "Rp 20.000",
-              "digunakan untuk mengukur oksigen pada kolam",
-              require("@/assets/images/vektorAlat.png")
-            )}
-            {card3(
-              "Detektor PH",
-              "Rp 20.000",
-              "digunakan untuk mengukur asam dan basa pada kolam",
-              require("@/assets/images/vektorAlat.png")
-            )}
-            {card3(
-              "Detektor TDS",
-              "Rp 20.000",
-              " digunakan untuk mengukur jumlah padatan atau partikel terlarut didalam kolam",
-              require("@/assets/images/vektorAlat.png")
-            )} */}
+          <View className="flex-row space-x-2">
+            {pieCard({ name: "Suhu", value: 50 })}
+            {pieCard({ name: "Suhu", value: 100 })}
+            {pieCard({ name: "Suhu", value: 150 })}
+            {pieCard({ name: "Suhu", value: 200 })}
           </View>
         </ScrollView>
       </View>
-      <View className="mt-20"></View>
     </ScrollView>
   );
 };
